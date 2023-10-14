@@ -68,9 +68,9 @@ export default async function Navbar({ items, children }: MainNavProps) {
               <Link
                 className={buttonVariants({
                   size: "sm",
-                  className: "rounded-full bg-[#F03D4E]",
+                  className: "rounded-full",
                 })}
-                href="/login"
+                href="/dashboard"
               >
                 Get Started
                 <Icons.arrowRight className="w-4 h-4 ml-2" />

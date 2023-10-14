@@ -35,11 +35,11 @@ export default function Home() {
           </Link>
         </div>
       </section>
-      <section className="relative flex flex-col items-center mx-auto px-4 sm:px-6 lg:px-8 pb-32 pt-4 lg:pt-12 lg:pb-40 max-w-4xl">
+      {/* <section className="relative flex flex-col items-center mx-auto px-4 sm:px-6 lg:px-8 pb-32 pt-4 lg:pt-12 lg:pb-40 max-w-4xl">
         <p className="text-sky-400 text-xs sm:text-sm uppercase tracking-widest mb-6">
           Features
         </p>
-      </section>
+      </section> */}
     </>
   );
 }

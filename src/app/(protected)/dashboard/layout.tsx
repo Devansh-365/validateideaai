@@ -1,14 +1,23 @@
 import BottomNav from "@/components/bottom-nav";
-import Footer from "@/components/footer";
-import Navbar from "@/components/navbar";
 import SideNav from "@/components/side-nav";
 import React from "react";
+import { authOptions } from "@/lib/auth";
+import { getCurrentUser } from "@/lib/session";
+import { redirect } from "next/navigation";
 
 interface DashboardLayoutProps {
   children?: React.ReactNode;
 }
 
-export default function DashboardLayout({ children }: DashboardLayoutProps) {
+export default async function DashboardLayout({
+  children,
+}: DashboardLayoutProps) {
+  const user = await getCurrentUser();
+
+  if (!user) {
+    redirect(authOptions?.pages?.signIn || "/login");
+  }
+
   return (
     <div className="flex min-h-screen relative flex-col justify-between">
       <SideNav />

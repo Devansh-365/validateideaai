@@ -20,7 +20,7 @@ interface FooterProps {
 
 export default function Footer({ items, children }: FooterProps) {
   return (
-    <footer className="mt-12 border-t border-gray-100 py-[5.6rem] text-md">
+    <footer className="mt-12 border-t dark:border-zinc-800 border-zinc-200 py-[5.6rem] text-md">
       <div className="mx-auto max-w-[120rem] px-[2.4rem] flex flex-col justify-between lg:flex-row">
         <div>
           <div className="flex h-full flex-row justify-between lg:flex-col">
