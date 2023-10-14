@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-// import { signIn } from "next-auth/react";
+import { signIn } from "next-auth/react";
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -18,10 +18,10 @@ const AuthForm = ({ className, ...props }: AuthFormProps) => {
     setIsLoading(true);
 
     try {
-      //   await signIn("google", {
-      //     redirect: false,
-      //     callbackUrl: searchParams?.get("from") || "/dashboard",
-      //   });
+      await signIn("google", {
+        redirect: false,
+        callbackUrl: searchParams?.get("from") || "/dashboard",
+      });
       router.push(`/dashboard`);
     } catch (error) {
       console.log("GOOGLE AUTH ERROR: ", error);

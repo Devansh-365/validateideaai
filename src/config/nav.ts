@@ -14,3 +14,5 @@ export const navConfig: NavItem[] = [
     href: "/blog",
   },
 ];
+
+

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { Icons } from "@/components/icons";
 
 type FooterLink = {
   href: string;
@@ -37,6 +38,8 @@ export default function Footer({ items, children }: FooterProps) {
               {/* <TwitterIcon />
               <GithubIcon />
               <SlackIcon /> */}
+              <Icons.gitHub className="w-5 h-5 cursor-pointer" />
+              <Icons.twitter className="w-5 h-5 cursor-pointer" />
             </div>
           </div>
         </div>
