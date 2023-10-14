@@ -8,6 +8,7 @@ import React from "react";
 import Image from "next/image";
 import { useSelectedLayoutSegment } from "next/navigation";
 import { cn } from "@/lib/utils";
+import { Icons } from "./icons";
 // import { UserAccountNav } from "./user-account-nav";
 // import { getCurrentUser } from "@/lib/session";
 // import db from "@/lib/db";
@@ -72,6 +73,7 @@ export default async function Navbar({ items, children }: MainNavProps) {
                 href="/login"
               >
                 Get Started
+                <Icons.arrowRight className="w-4 h-4 ml-2" />
               </Link>
               {/* <Link
                 className={buttonVariants({
