@@ -20,20 +20,33 @@ const BottomNav = () => {
     >
       <div className="flex flex-row justify-around items-center bg-transparent w-full">
         <Link href="/" className="flex items-center relative">
-          <Icons.add
-            className={`w-8 h-8 ${
+          <Icons.overview
+            className={`w-7 h-7 ${
               pathname == "/dashboard" ? "text-white" : "text-gray-500"
             }`}
           />
         </Link>
-        <Link href="/explore" className="flex items-center">
-          <Icons.add className="w-8 h-8" />
+        <Link
+          href="/explore"
+          className={`w-7 h-7 ${
+            pathname == "/dashboard/ds" ? "text-white" : "text-gray-500"
+          }`}
+        >
+          <Icons.add className="w-7 h-7 " />
         </Link>
         <Link href="/notifications" className="flex items-center">
-          <Icons.add className="w-8 h-8" />
+          <Icons.add
+            className={`w-7 h-7 ${
+              pathname == "/dashboard/sd" ? "text-white" : "text-gray-500"
+            }`}
+          />
         </Link>
         <Link href="/messages" className="flex items-center">
-          <Icons.settings className="w-8 h-8" />
+          <Icons.settings
+            className={`w-7 h-7 ${
+              pathname == "/dashboard/sd" ? "text-white" : "text-gray-500"
+            }`}
+          />
         </Link>
       </div>
     </div>

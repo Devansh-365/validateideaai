@@ -47,7 +47,7 @@ export default function SideNav({}: Props) {
       title: "Tools",
       items: [
         {
-          href: "/dashboard/",
+          href: "/dashboard/ai-pitch",
           icon: <Icons.bulb className="w-4 h-4 mr-2" />,
           label: "AI Pitch",
           active: pathname == "/dashboard/ai-pitch",
