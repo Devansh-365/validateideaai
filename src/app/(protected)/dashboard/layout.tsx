@@ -22,7 +22,9 @@ export default async function DashboardLayout({
     <div className="flex min-h-screen relative flex-col justify-between">
       <SideNav />
       {/* <Navbar /> */}
-      <main className="flex-1 relative bg-zinc-900/80">{children}</main>
+      <main className="flex-1 relative bg-zinc-900/80 ml-0 md:ml-[220px]">
+        {children}
+      </main>
       <BottomNav />
     </div>
   );
