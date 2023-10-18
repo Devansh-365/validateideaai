@@ -76,13 +76,13 @@ export default function SideNav({}: Props) {
       title: "Settings",
       items: [
         {
-          href: "/dashboard/",
+          href: "/dashboard/profile",
           icon: <Icons.user className="w-4 h-4 mr-2" />,
           label: "Profile",
           active: pathname == "/dashboard/profile",
         },
         {
-          href: "/dashboard/",
+          href: "/dashboard/billing",
           icon: <Icons.billing className="w-4 h-4 mr-2" />,
           label: "Billing",
           active: pathname == "/dashboard/billing",
