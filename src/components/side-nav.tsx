@@ -53,19 +53,19 @@ export default function SideNav({}: Props) {
           active: pathname == "/dashboard/ai-pitch",
         },
         {
-          href: "/dashboard/",
+          href: "/dashboard/decision-insights",
           icon: <Icons.bulb className="w-4 h-4 mr-2" />,
           label: "Decision Insights",
           active: pathname == "/dashboard/decision-insights",
         },
         {
-          href: "/dashboard/",
+          href: "/dashboard/sales-chat",
           icon: <Icons.bulb className="w-4 h-4 mr-2" />,
           label: "Sales Chat",
           active: pathname == "/dashboard/sales-chat",
         },
         {
-          href: "/dashboard/",
+          href: "/dashboard/conflict-ai",
           icon: <Icons.bulb className="w-4 h-4 mr-2" />,
           label: "Conflict AI",
           active: pathname == "/dashboard/conflict-ai",
@@ -93,7 +93,7 @@ export default function SideNav({}: Props) {
 
   return (
     <div
-      className={`absolute z-10 hidden md:flex h-full w-full flex-shrink-0 flex-col border-r dark:border-zinc-800 border-zinc-200 bg-zinc-100 dark:bg-zinc-900 duration-200 ease-in-out sm:w-[220px] ${
+      className={`absolute z-20 hidden md:flex h-full w-full flex-shrink-0 flex-col border-r dark:border-zinc-800 border-zinc-200 bg-zinc-100 dark:bg-zinc-900 duration-200 ease-in-out sm:w-[220px] ${
         true ? "translate-x-0" : "-translate-x-full"
       }`}
     >

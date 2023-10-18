@@ -3,7 +3,7 @@
 import { InputHTMLAttributes, ReactNode, useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { Input } from "./input";
+import { Input } from "@/components/ui/input";
 
 export function ProfileForm({
   title,

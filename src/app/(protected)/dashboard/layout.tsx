@@ -23,8 +23,8 @@ export default async function DashboardLayout({
     <div className="flex min-h-screen relative flex-col justify-between">
       <SideNav />
       {/* <Navbar /> */}
-      <main className="flex-1 relative bg-zinc-900/80">
-        <div className="flex items-center justify-between h-[62px] shrink-0 border-b dark:border-zinc-800 border-zinc-200 bg-zinc-100 dark:bg-zinc-900 px-4">
+      <main className="flex-1 min-h-screen relative bg-zinc-900/80">
+        <div className="absolute w-full top-0 z-10 flex items-center justify-between h-[62px] border-b dark:border-zinc-800 border-zinc-200 bg-zinc-100 dark:bg-zinc-900 px-4">
           <h5></h5>
           <UserAccountNav
             user={{
@@ -34,7 +34,7 @@ export default async function DashboardLayout({
             }}
           />
         </div>
-        <div className="ml-0 md:ml-[220px]">{children}</div>
+        <div className="ml-0 md:ml-[220px] h-full">{children}</div>
       </main>
       <BottomNav />
     </div>

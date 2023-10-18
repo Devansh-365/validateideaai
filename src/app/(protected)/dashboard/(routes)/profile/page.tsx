@@ -7,7 +7,7 @@ type Props = {};
 export default async function ProfilePage({}: Props) {
   return (
     <>
-      <section className="flex h-36 items-center border-b dark:border-zinc-800 border-zinc-200">
+      <section className="flex h-36 items-center border-b dark:border-zinc-800 border-zinc-200 mt-[62px]">
         <div className="mx-auto w-full max-w-screen-xl px-2.5 lg:px-20">
           <div className="flex items-center justify-between">
             <h1 className="text-2xl font-semibold">Profile</h1>
