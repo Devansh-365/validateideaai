@@ -6,7 +6,7 @@ import Link from "next/link";
 import { buttonVariants } from "./ui/button";
 import React from "react";
 import Image from "next/image";
-import { useSelectedLayoutSegment } from "next/navigation";
+import { usePathname, useSelectedLayoutSegment } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { Icons } from "./icons";
 // import { UserAccountNav } from "./user-account-nav";
@@ -25,7 +25,7 @@ interface MainNavProps {
 }
 
 export default async function Navbar({ items, children }: MainNavProps) {
-  const segment = useSelectedLayoutSegment();
+  const pathname = usePathname();
   //   const [showMobileMenu, setShowMobileMenu] = React.useState<boolean>(false);
 
   return (
@@ -50,7 +50,7 @@ export default async function Navbar({ items, children }: MainNavProps) {
                   href={item.disabled ? "#" : item.href}
                   className={cn(
                     "flex items-center text-lg font-medium transition-colors hover:text-foreground/80 sm:text-sm",
-                    item.href.startsWith(`/${segment}`)
+                    item.href == pathname
                       ? "text-foreground"
                       : "text-foreground/60",
                     item.disabled && "cursor-not-allowed opacity-80"
