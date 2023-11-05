@@ -8,6 +8,8 @@ import { usePathname } from "next/navigation";
 import { Button } from "../ui/button";
 import SettingsDropdown from "./settings-dropdown";
 import { useModal } from "@/hooks/use-modal";
+import useAuthStore from "@/hooks/use-auth-store";
+import { getCookie, setCookie, deleteCookie } from "cookies-next";
 
 type NavItemProps = {
   href?: string;
@@ -39,8 +41,11 @@ const NavItem: React.FC<NavItemProps> = ({
 export default function SideNav() {
   const pathname = usePathname();
   const { onOpen } = useModal();
-
+  const { roles, isLoggedIn } = useAuthStore();
   const navItems: any = [];
+  setCookie("isLoggedIn", isLoggedIn);
+
+  console.log("IsLOGGED : ", getCookie("isLoggedIn"));
 
   //   const navItems = [
   //     {

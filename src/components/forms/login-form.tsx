@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import React from "react";
+import React, { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { useRouter, useSearchParams } from "next/navigation";
 import {
@@ -18,6 +18,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+// import { cookies } from "next/headers";
+import { getCookie, setCookie, deleteCookie } from "cookies-next";
+import useAuthStore from "@/hooks/use-auth-store";
 
 interface AuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -47,8 +50,12 @@ const LoginAuthForm = ({ className, ...props }: AuthFormProps) => {
   const isLoading = form.formState.isSubmitting;
 
   const router = useRouter();
+  // const cookieStore = cookies();
+  const { roles, setIsLoggedIn, isLoggedIn } = useAuthStore();
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    const jwtToken = "token?";
+
     try {
       const response = await axios.post(
         `https://backend-mentorship.onrender.com/v1/fine_tuning/jobs/login`,
@@ -59,18 +66,22 @@ const LoginAuthForm = ({ className, ...props }: AuthFormProps) => {
         {
           withCredentials: true,
           headers: {
-            Authorization: `Bearer `, // Add this line for authorization
+            Authorization: `Bearer ${jwtToken}`, // Add this line for authorization
           },
         }
       );
 
-      const { token, role } = response.data;
+      console.log("RESPONSE : ", response?.data);
 
-      if (role === "member" || role === "admin") {
-        router.push("/dashboard");
-      } else {
-        router.push("/");
+      if (response?.data?.role) {
+        setIsLoggedIn(true);
+        useAuthStore.setState((state) => ({
+          ...state,
+          roles: response?.data?.role,
+        }));
       }
+
+      router.push("/dashboard");
 
       //   toast.success("User logged in!");
     } catch (error) {
@@ -78,6 +89,16 @@ const LoginAuthForm = ({ className, ...props }: AuthFormProps) => {
       //   toast.error("Your sign in request failed. Please try again.");
     }
   };
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      setCookie("isLoggedIn", isLoggedIn);
+      setCookie("roles", roles);
+    } else {
+      deleteCookie("roles");
+      deleteCookie("isLoggedIn");
+    }
+  }, [isLoggedIn, roles]);
 
   return (
     <div

@@ -18,6 +18,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import useAuthStore from "@/hooks/use-auth-store";
 
 interface AuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -51,13 +52,11 @@ const RegisterAuthForm = ({ className, ...props }: AuthFormProps) => {
   const isLoading = form.formState.isSubmitting;
 
   const router = useRouter();
-  const [isGoogleLoading, setIsGoogleLoading] = React.useState<boolean>(false);
-  const searchParams = useSearchParams();
-  const callbackUrl = searchParams?.get("callbackUrl") || "/";
+  const { roles, setIsLoggedIn } = useAuthStore();
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      axios.post(
+      const response = await axios.post(
         `https://backend-mentorship.onrender.com/v1/fine_tuning/jobs/register`,
         {
           name: values.name,
@@ -65,6 +64,18 @@ const RegisterAuthForm = ({ className, ...props }: AuthFormProps) => {
           password: values.password,
         }
       );
+
+      const { token } = response.data;
+      console.log("Hello, the token is ", token);
+      console.log("registered successfully", response);
+
+      // if (response?.data?.role) {
+      //   setIsLoggedIn(true);
+      //   useAuthStore.setState((state) => ({
+      //     ...state,
+      //     roles: response?.data?.role,
+      //   }));
+      // }
 
       router.push(`/`);
 
