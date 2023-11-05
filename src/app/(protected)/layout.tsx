@@ -1,3 +1,4 @@
+import SideNav from "@/components/dashboard/side-nav";
 import Navbar from "@/components/navbar";
 import React from "react";
 
@@ -10,8 +11,7 @@ export default async function DashboardLayout({
 }: DashboardLayoutProps) {
   return (
     <div className="flex min-h-screen relative flex-col justify-between">
-      {/* <Navbar /> */}
-      <main className="flex-1 min-h-screen">{children}</main>
+      {children}
     </div>
   );
 }

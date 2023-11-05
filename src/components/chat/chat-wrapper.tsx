@@ -24,7 +24,7 @@ export default function ChatWrapper() {
       }
     );
 
-    console.log("RESPONSE : ", response.data.generatedText);
+    // console.log("RESPONSE : ", response.data.generatedText);
     const userMessage: Message = { text: inputMessage, sender: "user" };
     const botResponse: Message = {
       text: response.data.generatedText,
