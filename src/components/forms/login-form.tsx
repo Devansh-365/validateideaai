@@ -21,6 +21,7 @@ import axios from "axios";
 // import { cookies } from "next/headers";
 import { getCookie, setCookie, deleteCookie } from "cookies-next";
 import useAuthStore from "@/hooks/use-auth-store";
+import toast from "react-hot-toast";
 
 interface AuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -54,7 +55,7 @@ const LoginAuthForm = ({ className, ...props }: AuthFormProps) => {
   const { roles, setIsLoggedIn, isLoggedIn } = useAuthStore();
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    const jwtToken = "token?";
+    const jwtToken = getCookie("token") || "token?";
 
     try {
       const response = await axios.post(
@@ -79,14 +80,16 @@ const LoginAuthForm = ({ className, ...props }: AuthFormProps) => {
           ...state,
           roles: response?.data?.role,
         }));
+
+        localStorage.setItem("isLoggedIn", "true");
       }
 
       router.push("/dashboard");
 
-      //   toast.success("User logged in!");
+      toast.success("User logged in!");
     } catch (error) {
       console.log(error);
-      //   toast.error("Your sign in request failed. Please try again.");
+      toast.error("Your login request failed. Please try again.");
     }
   };
 

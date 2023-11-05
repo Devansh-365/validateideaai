@@ -19,6 +19,7 @@ import * as z from "zod";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import useAuthStore from "@/hooks/use-auth-store";
+import toast from "react-hot-toast";
 
 interface AuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -56,6 +57,18 @@ const RegisterAuthForm = ({ className, ...props }: AuthFormProps) => {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
+      const checkUserResponse = await axios.post(
+        `https://backend-mentorship.onrender.com/v1/fine_tuning/jobs/findbyemail`,
+        {
+          email: values.email.toLowerCase(),
+        }
+      );
+
+      if (checkUserResponse.data) {
+        toast.error("User with this email already exists.");
+        return;
+      }
+
       const response = await axios.post(
         `https://backend-mentorship.onrender.com/v1/fine_tuning/jobs/register`,
         {
@@ -69,20 +82,20 @@ const RegisterAuthForm = ({ className, ...props }: AuthFormProps) => {
       console.log("Hello, the token is ", token);
       console.log("registered successfully", response);
 
-      // if (response?.data?.role) {
-      //   setIsLoggedIn(true);
-      //   useAuthStore.setState((state) => ({
-      //     ...state,
-      //     roles: response?.data?.role,
-      //   }));
-      // }
+      if (response?.data?.role) {
+        setIsLoggedIn(true);
+        useAuthStore.setState((state) => ({
+          ...state,
+          roles: response?.data?.role,
+        }));
+      }
 
       router.push(`/`);
 
-      //   toast.success("User logged in!");
+      toast.success("User account created!");
     } catch (error) {
       console.log(error);
-      //   toast.error("Your sign in request failed. Please try again.");
+      toast.error("Your register request failed. Please try again.");
     }
   };
 

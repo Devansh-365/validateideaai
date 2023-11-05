@@ -43,9 +43,9 @@ export default function SideNav() {
   const { onOpen } = useModal();
   const { roles, isLoggedIn } = useAuthStore();
   const navItems: any = [];
-  setCookie("isLoggedIn", isLoggedIn);
+  setCookie("isLoggedIn", localStorage.getItem("isLoggedIn"));
 
-  console.log("IsLOGGED : ", getCookie("isLoggedIn"));
+  console.log("IsLOGGEDed : ", getCookie("isLoggedIn"));
 
   //   const navItems = [
   //     {
