@@ -14,9 +14,7 @@ async function getBuisnessReport(id: string) {
 }
 
 export default async function page({ params }: { params: { ideaId: string } }) {
-  console.log("PARAMS : ", params.ideaId);
   const report = await getBuisnessReport(params.ideaId);
-  console.log("REPORT  : ", report);
 
   return (
     <>
@@ -36,12 +34,12 @@ export default async function page({ params }: { params: { ideaId: string } }) {
         <div className="ml-0 md:ml-[220px] h-full">
           <section className="mx-auto relative flex flex-col min-h-screen justify-between w-full max-w-5xl px-2.5 lg:px-20 overflow-hidden">
             {report ? (
-            <p className="text-2xl mt-[82px]">{report.generatedReport}</p>
+              <p className="text-2xl mt-[82px]">{report.generatedReport}</p>
             ) : (
               <div className="text-center mx-auto my-auto flex flex-col items-center justify-center">
-              <CircleOff className="w-8 h-8" />
-              <h3 className="mt-4 text-xl font-medium">No report found</h3>
-            </div>
+                <CircleOff className="w-8 h-8" />
+                <h3 className="mt-4 text-xl font-medium">No report found</h3>
+              </div>
             )}
             {/* <ChatWrapper /> */}
           </section>

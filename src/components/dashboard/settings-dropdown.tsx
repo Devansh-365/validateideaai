@@ -11,7 +11,7 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { Icons } from "../icons";
 
-export default function SettingsDropdown() {
+export default function SettingsDropdown({ userData }: { userData: any }) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -20,7 +20,7 @@ export default function SettingsDropdown() {
           className="w-full hover:bg-zinc-200 rounded-lg py-6"
         >
           <Icons.user className="w-5 h-5 mr-2" />
-          Devansh Tiwari
+          {userData.name}
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-48">

@@ -12,6 +12,7 @@ import useAuthStore from "@/hooks/use-auth-store";
 import { getCookie, setCookie, deleteCookie, getCookies } from "cookies-next";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
+import { useCurrentUser } from "@/hooks/use-current-user";
 
 async function getSideNav() {
   const res = await axios.get(
@@ -61,27 +62,13 @@ export default function SideNav() {
   const { onOpen } = useModal();
   const { roles, isLoggedIn } = useAuthStore();
   const navItems: any = [];
+  const user = useCurrentUser();
   setCookie("isLoggedIn", getCookie("isLoggedIn"));
 
   const { data } = useQuery({
     queryKey: ["side-navs"],
     queryFn: () => getSideNav(),
   });
-
-  // const getsome = async () => {
-  //   await axios
-  //     .get("http://localhost:8000/v1/fine_tuning/jobs/currentuser", {
-  //       withCredentials: true,
-  //     })
-  //     .then((response) => {
-  //       // Use the data here
-  //       console.log("USER: : ", response.data);
-  //     })
-  //     .catch((error) => {
-  //       // Handle any errors here
-  //       console.error("Error:", error);
-  //     });
-  // };
 
   //   const navItems = [
   //     {
@@ -208,7 +195,7 @@ export default function SideNav() {
           ))}
       </div>
       <div className="mt-auto mx-auto mb-2 w-full px-4">
-        <SettingsDropdown />
+        <SettingsDropdown userData={user} />
       </div>
     </div>
   );
