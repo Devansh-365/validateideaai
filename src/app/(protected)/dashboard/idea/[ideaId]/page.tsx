@@ -2,10 +2,22 @@ import React from "react";
 import ChatWrapper from "@/components/chat/chat-wrapper";
 import SideNav from "@/components/dashboard/side-nav";
 import { CircleOff } from "lucide-react";
+import getQueryClient from "@/lib/get-query-client";
 import axios from "axios";
-import { getCookies } from "cookies-next";
 
-export default async function DashboardPage() {
+async function getBuisnessReport(id: string) {
+  const res = await axios.get(
+    `http://localhost:8000/v1/fine_tuning/jobs/responsebyid/${id}`
+  );
+  const data = await res.data.data[0];
+  return data;
+}
+
+export default async function page({ params }: { params: { ideaId: string } }) {
+  console.log("PARAMS : ", params.ideaId);
+  const report = await getBuisnessReport(params.ideaId);
+  console.log("REPORT  : ", report);
+
   return (
     <>
       <SideNav />
@@ -23,10 +35,14 @@ export default async function DashboardPage() {
         </div>
         <div className="ml-0 md:ml-[220px] h-full">
           <section className="mx-auto relative flex flex-col min-h-screen justify-between w-full max-w-5xl px-2.5 lg:px-20 overflow-hidden">
-            <div className="text-center mx-auto my-auto flex flex-col items-center justify-center">
+            {report ? (
+            <p className="text-2xl mt-[82px]">{report.generatedReport}</p>
+            ) : (
+              <div className="text-center mx-auto my-auto flex flex-col items-center justify-center">
               <CircleOff className="w-8 h-8" />
               <h3 className="mt-4 text-xl font-medium">No report found</h3>
             </div>
+            )}
             {/* <ChatWrapper /> */}
           </section>
         </div>

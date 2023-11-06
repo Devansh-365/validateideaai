@@ -2,14 +2,32 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import { Icons } from "@/components/icons";
 import { usePathname } from "next/navigation";
-import { Button } from "../ui/button";
+import { Button, buttonVariants } from "../ui/button";
 import SettingsDropdown from "./settings-dropdown";
 import { useModal } from "@/hooks/use-modal";
 import useAuthStore from "@/hooks/use-auth-store";
-import { getCookie, setCookie, deleteCookie } from "cookies-next";
+import { getCookie, setCookie, deleteCookie, getCookies } from "cookies-next";
+import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
+
+async function getSideNav() {
+  const res = await axios.get(
+    "https://backend-mentorship.onrender.com/v1/fine_tuning/jobs/getresponses"
+  );
+  if (res.data.success) {
+    const businesses = res.data.response.map((item: any) => ({
+      id: item._id,
+      name: item.businessIdeaName,
+    }));
+    return businesses;
+  } else {
+    console.error("API request failed:", res.data.message);
+    return [];
+  }
+}
 
 type NavItemProps = {
   href?: string;
@@ -45,7 +63,25 @@ export default function SideNav() {
   const navItems: any = [];
   setCookie("isLoggedIn", getCookie("isLoggedIn"));
 
-  console.log("IsLOGGEDed : ", getCookie("isLoggedIn"));
+  const { data } = useQuery({
+    queryKey: ["side-navs"],
+    queryFn: () => getSideNav(),
+  });
+
+  // const getsome = async () => {
+  //   await axios
+  //     .get("http://localhost:8000/v1/fine_tuning/jobs/currentuser", {
+  //       withCredentials: true,
+  //     })
+  //     .then((response) => {
+  //       // Use the data here
+  //       console.log("USER: : ", response.data);
+  //     })
+  //     .catch((error) => {
+  //       // Handle any errors here
+  //       console.error("Error:", error);
+  //     });
+  // };
 
   //   const navItems = [
   //     {
@@ -129,6 +165,30 @@ export default function SideNav() {
           <Icons.add className="w-4 h-4 mr-2" />
           <span className="">Add Buisness Idea</span>
         </Button>
+        <p className="mt-6 text-xs uppercase tracking-widest">Your Reports</p>
+        <div className="mt-2 flex flex-col items-center gap-2">
+          {data &&
+            data.map((item: any) => (
+              <>
+                {item.name && (
+                  <Link
+                    key={item.id}
+                    href={`/dashboard/idea/${item.id}`}
+                    className={buttonVariants({
+                      variant: "outline",
+                      className: `w-full rounded-lg ${
+                        pathname === `/dashboard/idea/${item.id}`
+                          ? "bg-zinc-200"
+                          : ""
+                      }`,
+                    })}
+                  >
+                    {item.name && item.name}
+                  </Link>
+                )}
+              </>
+            ))}
+        </div>
         {navItems.length != 0 &&
           navItems.map((item: any, index: any) => (
             <>

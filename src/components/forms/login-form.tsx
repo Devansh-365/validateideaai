@@ -16,10 +16,10 @@ import {
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { useForm } from "react-hook-form";
+import { set, useForm } from "react-hook-form";
 import axios from "axios";
 // import { cookies } from "next/headers";
-import { getCookie, setCookie, deleteCookie } from "cookies-next";
+import { getCookie, setCookie, deleteCookie, getCookies } from "cookies-next";
 import useAuthStore from "@/hooks/use-auth-store";
 import toast from "react-hot-toast";
 
@@ -53,11 +53,14 @@ const LoginAuthForm = ({ className, ...props }: AuthFormProps) => {
   const router = useRouter();
   // const cookieStore = cookies();
   const { roles, setIsLoggedIn, isLoggedIn } = useAuthStore();
+  console.log("COOKIES : ", document.cookie);
+  console.log("JWT Token:", getCookie("token"));
+  const jwtToken = getCookie("token");
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    const jwtToken = getCookie("token") || "token?";
-
     try {
+      console.log("JWTSSSS Token:", jwtToken);
+
       const response = await axios.post(
         `https://backend-mentorship.onrender.com/v1/fine_tuning/jobs/login`,
         {
@@ -67,12 +70,13 @@ const LoginAuthForm = ({ className, ...props }: AuthFormProps) => {
         {
           withCredentials: true,
           headers: {
-            Authorization: `Bearer ${jwtToken}`, // Add this line for authorization
+            Authorization: `Bearer ${jwtToken}`,
           },
         }
       );
 
       console.log("RESPONSE : ", response?.data);
+      setCookie("token", response?.data?.token);
 
       if (response?.data?.role) {
         setIsLoggedIn(true);

@@ -54,7 +54,7 @@ const RegisterAuthForm = ({ className, ...props }: AuthFormProps) => {
 
   const router = useRouter();
   const { roles, setIsLoggedIn } = useAuthStore();
-
+  
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       const checkUserResponse = await axios.post(
