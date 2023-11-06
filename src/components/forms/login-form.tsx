@@ -53,7 +53,6 @@ const LoginAuthForm = ({ className, ...props }: AuthFormProps) => {
   const router = useRouter();
   // const cookieStore = cookies();
   const { roles, setIsLoggedIn, isLoggedIn } = useAuthStore();
-  console.log("COOKIES : ", document.cookie);
   console.log("JWT Token:", getCookie("token"));
   const jwtToken = getCookie("token");
 
