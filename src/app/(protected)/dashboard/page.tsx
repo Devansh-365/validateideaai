@@ -11,17 +11,21 @@ import { UserAccountNav } from "@/components/dashboard/user-account-nav";
 async function getCurrentUser() {
   const token = cookies().get("token")?.value;
 
-  const res = await axios.get(
-    "https://backend-mentorship.onrender.com/v1/fine_tuning/jobs/currentuser",
-    {
-      withCredentials: true,
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
-  const data = await res.data;
-  return data;
+  try {
+    const res = await axios.get(
+      "https://backend-mentorship.onrender.com/v1/fine_tuning/jobs/currentuser",
+      {
+        withCredentials: true,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const data = await res.data;
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 async function getSideNav(id: string) {
@@ -34,11 +38,12 @@ async function getSideNav(id: string) {
 
 export default async function DashboardPage() {
   const user = await getCurrentUser();
-  const reports = await getSideNav(user._id);
+  console.log("USER : ", user);
+  // const reports = await getSideNav(user._id);
 
-  if (reports.length != 0) {
-    redirect(`/dashboard/idea/${reports[0]._id}`);
-  }
+  // if (reports.length != 0) {
+  //   redirect(`/dashboard/idea/${reports[0]._id}`);
+  // }
 
   return (
     <>
