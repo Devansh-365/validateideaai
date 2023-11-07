@@ -53,13 +53,10 @@ const LoginAuthForm = ({ className, ...props }: AuthFormProps) => {
   const router = useRouter();
   // const cookieStore = cookies();
   const { roles, setIsLoggedIn, isLoggedIn } = useAuthStore();
-  console.log("JWT Token:", getCookie("token"));
   const jwtToken = getCookie("token");
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      console.log("JWTSSSS Token:", jwtToken);
-
       const response = await axios.post(
         `https://backend-mentorship.onrender.com/v1/fine_tuning/jobs/login`,
         {
@@ -74,21 +71,17 @@ const LoginAuthForm = ({ className, ...props }: AuthFormProps) => {
         }
       );
 
-      console.log("RESPONSE : ", response?.data);
       setCookie("token", response?.data?.token);
 
       if (response?.data?.role) {
         setIsLoggedIn(true);
-        useAuthStore.setState((state) => ({
+        useAuthStore.setState((state: any) => ({
           ...state,
           roles: response?.data?.role,
         }));
-
-        // localStorage.setItem("isLoggedIn", "true");
       }
 
       router.push("/dashboard");
-
       toast.success("User logged in!");
     } catch (error) {
       console.log(error);

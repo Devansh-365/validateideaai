@@ -53,7 +53,6 @@ export default function CreateBuisnessIdeaModal() {
   const isModalOpen = isOpen && type === "buisnessIdeaModal";
 
   const router = useRouter();
-  console.log("COOKIES : ", getCookies());
   const jwtToken = getCookie("token");
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
@@ -73,11 +72,11 @@ export default function CreateBuisnessIdeaModal() {
           ],
         },
         {
-          withCredentials: true, // Include this option
+          withCredentials: true,
         }
       );
 
-      console.log("RESPONSES DATA : ", response.data);
+      // console.log("RESPONSES DATA : ", response.data);
 
       form.reset();
       toast.success("User account created!");

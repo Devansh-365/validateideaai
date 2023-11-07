@@ -1,3 +1,5 @@
+"use client";
+
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
@@ -13,10 +15,8 @@ async function getCurrentUser() {
 }
 
 export function useCurrentUser() {
-  const { data } = useQuery({
+  return useQuery({
     queryKey: ["current-user"],
     queryFn: () => getCurrentUser(),
   });
-
-  return data;
 }

@@ -6,29 +6,9 @@ import React, { useState } from "react";
 import { Icons } from "@/components/icons";
 import { usePathname } from "next/navigation";
 import { Button, buttonVariants } from "../ui/button";
-import SettingsDropdown from "./settings-dropdown";
 import { useModal } from "@/hooks/use-modal";
-import useAuthStore from "@/hooks/use-auth-store";
-import { getCookie, setCookie, deleteCookie, getCookies } from "cookies-next";
-import axios from "axios";
-import { useQuery } from "@tanstack/react-query";
 import { useCurrentUser } from "@/hooks/use-current-user";
-
-async function getSideNav() {
-  const res = await axios.get(
-    "https://backend-mentorship.onrender.com/v1/fine_tuning/jobs/getresponses"
-  );
-  if (res.data.success) {
-    const businesses = res.data.response.map((item: any) => ({
-      id: item._id,
-      name: item.businessIdeaName,
-    }));
-    return businesses;
-  } else {
-    console.error("API request failed:", res.data.message);
-    return [];
-  }
-}
+import useSideNavs from "@/hooks/use-side-navs";
 
 type NavItemProps = {
   href?: string;
@@ -60,15 +40,11 @@ const NavItem: React.FC<NavItemProps> = ({
 export default function SideNav() {
   const pathname = usePathname();
   const { onOpen } = useModal();
-  const { roles, isLoggedIn } = useAuthStore();
   const navItems: any = [];
-  const user = useCurrentUser();
-  setCookie("isLoggedIn", getCookie("isLoggedIn"));
-
-  const { data } = useQuery({
-    queryKey: ["side-navs"],
-    queryFn: () => getSideNav(),
-  });
+  const { data: user, isLoading: isUserLoading } = useCurrentUser();
+  const { data: sideNavData, isLoading: isSideNavLoading } = useSideNavs(
+    user?._id
+  );
 
   //   const navItems = [
   //     {
@@ -154,27 +130,33 @@ export default function SideNav() {
         </Button>
         <p className="mt-6 text-xs uppercase tracking-widest">Your Reports</p>
         <div className="mt-2 flex flex-col items-center gap-2">
-          {data &&
-            data.map((item: any) => (
-              <>
-                {item.name && (
-                  <Link
-                    key={item.id}
-                    href={`/dashboard/idea/${item.id}`}
-                    className={buttonVariants({
-                      variant: "outline",
-                      className: `w-full rounded-lg ${
-                        pathname === `/dashboard/idea/${item.id}`
-                          ? "bg-zinc-200"
-                          : ""
-                      }`,
-                    })}
-                  >
-                    {item.name && item.name}
-                  </Link>
-                )}
-              </>
-            ))}
+          {!isSideNavLoading && !isUserLoading ? (
+            <>
+              {sideNavData &&
+                sideNavData.map((item: any) => (
+                  <>
+                    {item.businessIdeaName && (
+                      <Link
+                        key={item._id}
+                        href={`/dashboard/idea/${item._id}`}
+                        className={buttonVariants({
+                          variant: "outline",
+                          className: `w-full rounded-lg ${
+                            pathname === `/dashboard/idea/${item._id}`
+                              ? "bg-zinc-200"
+                              : ""
+                          }`,
+                        })}
+                      >
+                        {item.businessIdeaName && item.businessIdeaName}
+                      </Link>
+                    )}
+                  </>
+                ))}
+            </>
+          ) : (
+            <div>Loading</div>
+          )}
         </div>
         {navItems.length != 0 &&
           navItems.map((item: any, index: any) => (
@@ -194,9 +176,9 @@ export default function SideNav() {
             </>
           ))}
       </div>
-      <div className="mt-auto mx-auto mb-2 w-full px-4">
+      {/* <div className="mt-auto mx-auto mb-2 w-full px-4">
         <SettingsDropdown userData={user} />
-      </div>
+      </div> */}
     </div>
   );
 }
