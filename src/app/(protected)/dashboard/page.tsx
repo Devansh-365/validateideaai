@@ -38,12 +38,11 @@ async function getSideNav(id: string) {
 
 export default async function DashboardPage() {
   const user = await getCurrentUser();
-  console.log("USER : ", user);
-  // const reports = await getSideNav(user._id);
+  const reports = await getSideNav(user._id);
 
-  // if (reports.length != 0) {
-  //   redirect(`/dashboard/idea/${reports[0]._id}`);
-  // }
+  if (reports.length != 0) {
+    redirect(`/dashboard/idea/${reports[0]._id}`);
+  }
 
   return (
     <>
