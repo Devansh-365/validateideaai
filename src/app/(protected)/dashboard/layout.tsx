@@ -10,12 +10,10 @@ interface DashboardLayoutProps {
   children?: React.ReactNode;
 }
 
-export default async function DashboardLayout({
-  children,
-}: DashboardLayoutProps) {
-  // if (!cookies().get("token")) {
-  //   redirect("/login");
-  // }
+export default function DashboardLayout({ children }: DashboardLayoutProps) {
+  if (!cookies().get("token")) {
+    redirect("/login");
+  }
 
   return (
     <div className="flex min-h-screen relative flex-col justify-between">

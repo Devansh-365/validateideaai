@@ -79,11 +79,11 @@ export default function CreateBuisnessIdeaModal() {
       // console.log("RESPONSES DATA : ", response.data);
 
       form.reset();
-      toast.success("User account created!");
+      toast.success("Buisness report created!");
       router.push(`/dashboard`);
     } catch (error) {
       console.log(error);
-      toast.error("Your register request failed. Please try again.");
+      toast.error("Your buisness report request failed. Please try again.");
     }
   };
 

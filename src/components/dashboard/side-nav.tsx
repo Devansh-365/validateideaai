@@ -103,7 +103,7 @@ export default function SideNav() {
 
   return (
     <div
-      className={`absolute z-20 hidden md:flex h-full w-full flex-shrink-0 flex-col border-r dark:border-zinc-800 border-zinc-400 bg-zinc-100 dark:bg-zinc-900 duration-200 ease-in-out sm:w-[220px] ${
+      className={`fixed z-20 hidden md:flex h-full w-full flex-shrink-0 flex-col border-r dark:border-zinc-800 border-zinc-400 bg-zinc-100 dark:bg-zinc-900 duration-200 ease-in-out sm:w-[220px] ${
         true ? "translate-x-0" : "-translate-x-full"
       }`}
     >
@@ -141,14 +141,15 @@ export default function SideNav() {
                         href={`/dashboard/idea/${item._id}`}
                         className={buttonVariants({
                           variant: "outline",
-                          className: `w-full rounded-lg ${
+                          className: `w-full rounded-lg flex justify-between ${
                             pathname === `/dashboard/idea/${item._id}`
                               ? "bg-zinc-200"
                               : ""
                           }`,
                         })}
                       >
-                        {item.businessIdeaName && item.businessIdeaName}
+                        <span>{item.businessIdeaName && item.businessIdeaName}</span>
+                        <Icons.trash className="bg-red-600 text-white w-6 h-6 p-1 rounded-full ml-auto" />
                       </Link>
                     )}
                   </>

@@ -54,7 +54,7 @@ export function UserAccountNav() {
           onSelect={(event) => {
             event.preventDefault();
             deleteCookie("token");
-            router.refresh();
+            router.push("/login");
           }}
         >
           Sign out
