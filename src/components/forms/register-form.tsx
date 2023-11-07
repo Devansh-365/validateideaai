@@ -64,7 +64,7 @@ const RegisterAuthForm = ({ className, ...props }: AuthFormProps) => {
         }
       );
 
-      if (checkUserResponse.data) {
+      if (!checkUserResponse.data) {
         toast.error("User with this email already exists.");
         return;
       }
