@@ -20,6 +20,7 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import useAuthStore from "@/hooks/use-auth-store";
 import toast from "react-hot-toast";
+import { setCookie } from "cookies-next";
 
 interface AuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -54,7 +55,7 @@ const RegisterAuthForm = ({ className, ...props }: AuthFormProps) => {
 
   const router = useRouter();
   const { roles, setIsLoggedIn } = useAuthStore();
-  
+
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       const checkUserResponse = await axios.post(
@@ -78,9 +79,7 @@ const RegisterAuthForm = ({ className, ...props }: AuthFormProps) => {
         }
       );
 
-      const { token } = response.data;
-      console.log("Hello, the token is ", token);
-      console.log("registered successfully", response);
+      setCookie("token", response?.data?.token);
 
       if (response?.data?.role) {
         setIsLoggedIn(true);
@@ -90,8 +89,7 @@ const RegisterAuthForm = ({ className, ...props }: AuthFormProps) => {
         }));
       }
 
-      router.push(`/`);
-
+      router.push(`/dashboard`);
       toast.success("User account created!");
     } catch (error) {
       console.log(error);
