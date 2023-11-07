@@ -6,6 +6,8 @@ import getQueryClient from "@/lib/get-query-client";
 import axios from "axios";
 import { UserAccountNav } from "@/components/dashboard/user-account-nav";
 import ReactMarkdown from "react-markdown";
+import { Icons } from "@/components/icons";
+import DeleteReportButton from "@/components/dashboard/delete-report";
 
 async function getBuisnessReport(id: string) {
   const res = await axios.get(
@@ -24,12 +26,18 @@ export default async function page({ params }: { params: { ideaId: string } }) {
       <SideNav />
       {/* <Navbar /> */}
       <main className="flex-1 min-h-screen relative">
-        <div className="fixed w-full top-0 z-10 flex items-center justify-between h-[62px] border-b dark:border-zinc-800 border-zinc-400 bg-zinc-100 dark:bg-zinc-900 px-4">
+        <div className="fixed w-full top-0 z-10 flex items-center justify-between h-[62px] border-b dark:border-zinc-800 border-zinc-300 bg-white px-4">
           <h5></h5>
           <UserAccountNav />
         </div>
         <div className="ml-0 md:ml-[220px] h-full">
-          <section className="mx-auto relative flex mt-[82px] flex-col min-h-screen w-full max-w-5xl px-2.5 lg:px-20 overflow-hidden">
+          <section className="mx-auto relative flex mt-[82px] text-[#14171f] flex-col min-h-screen w-full max-w-5xl px-2.5 lg:px-20 overflow-hidden">
+            <div className="w-full flex justify-between items-center pb-6 mb-6 border-b">
+              <h2 className="font-bold text-4xl capitalize">
+                {report.businessIdeaName}
+              </h2>
+              <DeleteReportButton />
+            </div>
             {report ? (
               <ReactMarkdown
                 components={{
@@ -40,7 +48,11 @@ export default async function page({ params }: { params: { ideaId: string } }) {
                     return <h3 className="text-lg">{children}</h3>;
                   },
                   h2: ({ node, children }) => {
-                    return <h2 className="text-xl mb-2">📌 {children}</h2>;
+                    return (
+                      <h2 className="text-xl mb-2 text-[#14171f] font-medium">
+                        {children}
+                      </h2>
+                    );
                   },
                   h4: ({ node, children }) => {
                     return <h4 className="text-xl">{children}</h4>;

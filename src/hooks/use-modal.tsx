@@ -1,6 +1,6 @@
 import create from "zustand";
 
-export type ModalType = "buisnessIdeaModal" | "userdetailmodal";
+export type ModalType = "buisnessIdeaModal" | "deleteBuisnessIdea";
 
 interface ModalStore {
   type: ModalType | null;

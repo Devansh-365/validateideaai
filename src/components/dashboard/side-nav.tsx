@@ -9,6 +9,7 @@ import { Button, buttonVariants } from "../ui/button";
 import { useModal } from "@/hooks/use-modal";
 import { useCurrentUser } from "@/hooks/use-current-user";
 import useSideNavs from "@/hooks/use-side-navs";
+import { Link2, LinkIcon } from "lucide-react";
 
 type NavItemProps = {
   href?: string;
@@ -103,22 +104,19 @@ export default function SideNav() {
 
   return (
     <div
-      className={`fixed z-20 hidden md:flex h-full w-full flex-shrink-0 flex-col border-r dark:border-zinc-800 border-zinc-400 bg-zinc-100 dark:bg-zinc-900 duration-200 ease-in-out sm:w-[220px] ${
+      className={`fixed z-20 hidden md:flex h-full w-full flex-shrink-0 flex-col border-r dark:border-zinc-800 border-zinc-400 bg-[#15171f] dark:bg-zinc-900 duration-200 ease-in-out sm:w-[220px] ${
         true ? "translate-x-0" : "-translate-x-full"
       }`}
     >
-      <Link
-        href="/"
-        className="flex h-[62px] px-4 mb-2 items-center border-b dark:border-zinc-800 border-zinc-400"
-      >
+      <Link href="/" className="flex h-[62px] px-4 mb-4 items-center">
         <Image
           src="/logo.svg"
-          width={20}
-          height={20}
+          width={26}
+          height={26}
           alt="logo"
           className="mr-2"
         />
-        <span>PitchPerfectAI</span>
+        <span className="text-white font-medium">PitchPerfectAI</span>
       </Link>
       <div className="px-4">
         <Button
@@ -128,8 +126,10 @@ export default function SideNav() {
           <Icons.add className="w-4 h-4 mr-2" />
           <span className="">Add Buisness Idea</span>
         </Button>
-        <p className="mt-6 text-xs uppercase tracking-widest">Your Reports</p>
-        <div className="mt-2 flex flex-col items-center gap-2">
+        <p className="mt-8 text-xs text-[#939aa8] uppercase tracking-widest">
+          Your Reports
+        </p>
+        <div className="mt-3 flex flex-col items-center gap-2">
           {!isSideNavLoading && !isUserLoading ? (
             <>
               {sideNavData &&
@@ -140,16 +140,19 @@ export default function SideNav() {
                         key={item._id}
                         href={`/dashboard/idea/${item._id}`}
                         className={buttonVariants({
-                          variant: "outline",
-                          className: `w-full rounded-lg flex justify-between ${
+                          variant: "ghost",
+                          className: `w-full rounded-lg flex items-start justify-start text-start text-white hover:text-white capitalize hover:bg-[#373f51] ${
                             pathname === `/dashboard/idea/${item._id}`
-                              ? "bg-zinc-200"
+                              ? "bg-[#373f51]"
                               : ""
                           }`,
                         })}
                       >
-                        <span>{item.businessIdeaName && item.businessIdeaName}</span>
-                        <Icons.trash className="bg-red-600 text-white w-6 h-6 p-1 rounded-full ml-auto" />
+                        <LinkIcon className="mr-2 text-white w-4 h-4" />
+                        <span className="mr-auto">
+                          {item.businessIdeaName && item.businessIdeaName}
+                        </span>
+                        {/* <Icons.trash className="bg-red-600 text-white w-6 h-6 p-1 rounded-full ml-auto" /> */}
                       </Link>
                     )}
                   </>
