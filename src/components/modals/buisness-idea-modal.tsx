@@ -57,9 +57,7 @@ export default function CreateBuisnessIdeaModal() {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      console.log("Input DATA : ", values.name, values.idea);
-
-      const response = await axios.post(
+      await axios.post(
         `https://backend-mentorship.onrender.com/v1/fine_tuning/jobs/businessreport`,
         {
           businessIdeaName: values.name,
@@ -75,10 +73,8 @@ export default function CreateBuisnessIdeaModal() {
           withCredentials: true,
         }
       );
-
-      // console.log("RESPONSES DATA : ", response.data);
-
       form.reset();
+      onClose();
       toast.success("Buisness report created!");
       router.push(`/dashboard`);
     } catch (error) {
@@ -88,8 +84,10 @@ export default function CreateBuisnessIdeaModal() {
   };
 
   const handleClose = () => {
-    form.reset();
-    onClose();
+    if (!isLoading) {
+      form.reset();
+      onClose();
+    }
   };
 
   return (
@@ -138,7 +136,6 @@ export default function CreateBuisnessIdeaModal() {
               type="submit"
               disabled={isLoading}
               className="w-full mt-4 rounded-lg"
-              onClick={onClose}
             >
               Submit
             </Button>
