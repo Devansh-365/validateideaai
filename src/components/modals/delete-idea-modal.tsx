@@ -1,11 +1,7 @@
 "use client";
 
 import axios from "axios";
-import * as z from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
-
 import {
   Dialog,
   DialogContent,
@@ -20,7 +16,9 @@ import { toast } from "react-hot-toast";
 import { useModal } from "@/hooks/use-modal";
 
 export const DeleteBuisnessIdeaModal = () => {
-  const { type, isOpen, onClose } = useModal();
+  const { type, isOpen, onClose, data } = useModal();
+
+  const { report } = data;
 
   const router = useRouter();
   const params = useParams();
@@ -40,7 +38,9 @@ export const DeleteBuisnessIdeaModal = () => {
       //     },
       //   });
 
-      //   await axios.delete(url);
+      await axios.delete(
+        `https://backend-mentorship.onrender.com/v1/fine_tuning/jobs/deleteresponse/${report?._id}`
+      );
 
       toast.success("Buisness Report has been deleted!");
       router.refresh();
@@ -61,9 +61,9 @@ export const DeleteBuisnessIdeaModal = () => {
           <DialogTitle className="text-xl font-bold">Delete Report</DialogTitle>
           <DialogDescription className="text-sm">
             Are you sure you want to do this? <br />
-            {/* <span className="text-indigo-500 font-semibold">
-              #{channel?.name}
-            </span>{" "} */}
+            <span className="text-blue-600 font-semibold">
+              {report?.businessIdeaName}
+            </span>{" "}
             will be permanently deleted.
           </DialogDescription>
         </DialogHeader>

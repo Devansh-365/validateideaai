@@ -140,7 +140,7 @@ export default function SideNav() {
                         key={item._id}
                         href={`/dashboard/idea/${item._id}`}
                         className={buttonVariants({
-                          variant: "ghost",
+                          variant: "sidenav",
                           className: `w-full rounded-lg flex items-start justify-start text-start text-white hover:text-white capitalize hover:bg-[#373f51] ${
                             pathname === `/dashboard/idea/${item._id}`
                               ? "bg-[#373f51]"

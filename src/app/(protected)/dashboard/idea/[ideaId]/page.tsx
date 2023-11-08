@@ -19,7 +19,6 @@ async function getBuisnessReport(id: string) {
 
 export default async function page({ params }: { params: { ideaId: string } }) {
   const report = await getBuisnessReport(params.ideaId);
-  console.log("report : ", report);
 
   return (
     <>
@@ -36,7 +35,7 @@ export default async function page({ params }: { params: { ideaId: string } }) {
               <h2 className="font-bold text-4xl capitalize">
                 {report.businessIdeaName}
               </h2>
-              <DeleteReportButton />
+              <DeleteReportButton report={report} />
             </div>
             {report ? (
               <ReactMarkdown
