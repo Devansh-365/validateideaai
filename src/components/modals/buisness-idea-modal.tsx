@@ -29,6 +29,7 @@ import {
 } from "@/components/ui/form";
 import { useRouter } from "next/navigation";
 import { getCookie, setCookie, deleteCookie, getCookies } from "cookies-next";
+import { Icons } from "@/components/icons";
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -137,6 +138,9 @@ export default function CreateBuisnessIdeaModal() {
               disabled={isLoading}
               className="w-full mt-4 rounded-lg"
             >
+              {isLoading ? (
+                <Icons.spinner className="animate-spin mr-2" />
+              ) : null}
               Submit
             </Button>
           </form>

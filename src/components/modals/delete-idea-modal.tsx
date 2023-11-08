@@ -14,6 +14,7 @@ import { Button } from "@/components/ui/button";
 import { useParams, useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
 import { useModal } from "@/hooks/use-modal";
+import { Icons } from "@/components/icons";
 
 export const DeleteBuisnessIdeaModal = () => {
   const { type, isOpen, onClose, data } = useModal();
@@ -81,6 +82,7 @@ export const DeleteBuisnessIdeaModal = () => {
             disabled={isLoading}
             onClick={onClick}
           >
+            {isLoading ? <Icons.spinner className="animate-spin mr-2" /> : null}
             Confirm
           </Button>
         </DialogFooter>

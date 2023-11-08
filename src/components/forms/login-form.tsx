@@ -22,6 +22,7 @@ import axios from "axios";
 import { getCookie, setCookie, deleteCookie, getCookies } from "cookies-next";
 import useAuthStore from "@/hooks/use-auth-store";
 import toast from "react-hot-toast";
+import { Icons } from "@/components/icons";
 
 interface AuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -137,7 +138,7 @@ const LoginAuthForm = ({ className, ...props }: AuthFormProps) => {
             type="submit"
             disabled={isLoading}
           >
-            {isLoading ? <></> : null}
+            {isLoading ? <Icons.spinner className="animate-spin mr-2" /> : null}
             Login
           </Button>
         </form>
