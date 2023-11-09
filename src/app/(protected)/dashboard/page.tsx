@@ -7,6 +7,7 @@ import { getCookies } from "cookies-next";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { UserAccountNav } from "@/components/dashboard/user-account-nav";
+import MobileNav from "@/components/dashboard/mobile-nav";
 
 async function getCurrentUser() {
   const token = cookies().get("token")?.value;
@@ -54,8 +55,10 @@ export default async function DashboardPage() {
       {/* <Navbar /> */}
       <main className="flex-1 min-h-screen relative">
         <div className="absolute w-full top-0 z-10 flex items-center justify-between h-[62px] border-b dark:border-zinc-800 border-zinc-400 bg-zinc-100 dark:bg-zinc-900 px-4">
-          <h5></h5>
-          <UserAccountNav />
+          <MobileNav />
+          <div className="ml-auto">
+            <UserAccountNav />
+          </div>
         </div>
         <div className="ml-0 md:ml-[220px] h-full">
           <section className="mx-auto relative flex flex-col min-h-screen justify-between w-full max-w-5xl px-2.5 lg:px-20 overflow-hidden">
