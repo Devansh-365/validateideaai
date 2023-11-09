@@ -144,8 +144,7 @@ export default function Home() {
           Pricing
         </p>
         <h3 className="text-2xl sm:text-3xl text-[#2D3139] font-semibold tracking-tight lg:text-4xl text-center py-1 -my-1 mb-12 mt-4">
-          Pay once, use forever, <br className="flex md:hidden" /> upgrade for
-          free
+          Choose Your Pricing Plan
         </h3>
         <div className="mt-6 flex flex-col md:flex-row gap-8">
           {pricingData.map((item, index) => (

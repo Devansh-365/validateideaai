@@ -48,6 +48,13 @@ function Footer() {
       <div className="mt-12 flex gap-4 mx-auto justify-center items-center text-white">
         <span className="text-[#A5ABB6]">Terms of Service</span>
         <span className="text-[#A5ABB6]">Privacy Policy</span>
+        <Link
+          href="mailto:devanshtiwari365@gmail.com"
+          target="_blank"
+          className="text-[#A5ABB6]"
+        >
+          Contact Us
+        </Link>
       </div>
     </footer>
   );
