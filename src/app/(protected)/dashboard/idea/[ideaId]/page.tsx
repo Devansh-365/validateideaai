@@ -1,13 +1,34 @@
 import React from "react";
-import ChatWrapper from "@/components/chat/chat-wrapper";
 import SideNav from "@/components/dashboard/side-nav";
 import { CircleOff } from "lucide-react";
-import getQueryClient from "@/lib/get-query-client";
 import axios from "axios";
 import { UserAccountNav } from "@/components/dashboard/user-account-nav";
 import ReactMarkdown from "react-markdown";
-import { Icons } from "@/components/icons";
 import DeleteReportButton from "@/components/dashboard/delete-report";
+import { Button, buttonVariants } from "@/components/ui/button";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
+import MobileNav from "@/components/dashboard/mobile-nav";
+
+async function getCurrentUser() {
+  const token = cookies().get("token")?.value;
+
+  try {
+    const res = await axios.get(
+      "https://backend-mentorship.onrender.com/v1/fine_tuning/jobs/currentuser",
+      {
+        withCredentials: true,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const data = await res.data;
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+}
 
 async function getBuisnessReport(id: string) {
   const res = await axios.get(
@@ -18,6 +39,11 @@ async function getBuisnessReport(id: string) {
 }
 
 export default async function page({ params }: { params: { ideaId: string } }) {
+  const user = await getCurrentUser();
+  if (!user) {
+    redirect("/login");
+  }
+
   const report = await getBuisnessReport(params.ideaId);
 
   return (
@@ -26,11 +52,13 @@ export default async function page({ params }: { params: { ideaId: string } }) {
       {/* <Navbar /> */}
       <main className="flex-1 min-h-screen relative">
         <div className="fixed w-full top-0 z-10 flex items-center justify-between h-[62px] border-b dark:border-zinc-800 border-zinc-300 bg-white px-4">
-          <h5></h5>
-          <UserAccountNav />
+          <MobileNav />
+          <div className="ml-auto">
+            <UserAccountNav />
+          </div>
         </div>
         <div className="ml-0 md:ml-[220px] h-full">
-          <section className="mx-auto relative flex mt-[82px] text-[#14171f] flex-col min-h-screen w-full max-w-5xl px-2.5 lg:px-20 overflow-hidden">
+          <section className="mx-auto relative flex mt-[82px] text-[#14171f] flex-col min-h-screen w-full max-w-5xl px-5 lg:px-20 overflow-hidden">
             <div className="w-full flex justify-between items-center pb-6 mb-6 border-b">
               <h2 className="font-bold text-4xl capitalize">
                 {report.businessIdeaName}

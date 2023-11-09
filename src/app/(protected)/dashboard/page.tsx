@@ -38,6 +38,10 @@ async function getSideNav(id: string) {
 
 export default async function DashboardPage() {
   const user = await getCurrentUser();
+  if (!user) {
+    redirect("/login");
+  }
+
   const reports = await getSideNav(user._id);
 
   if (reports.length != 0) {

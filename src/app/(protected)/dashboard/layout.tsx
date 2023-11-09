@@ -9,7 +9,7 @@ import axios from "axios";
 const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 async function getCurrentUser() {
-  await wait(2000);
+  await wait(3000);
   const token = cookies().get("token")?.value;
 
   try {
@@ -37,10 +37,9 @@ export default async function DashboardLayout({
   children,
 }: DashboardLayoutProps) {
   const user = await getCurrentUser();
-
-  if (!user) {
-    redirect("/login");
-  }
+  // if (!user) {
+  //   redirect("/login");
+  // }
 
   return (
     <div className="flex min-h-screen relative flex-col justify-between">
