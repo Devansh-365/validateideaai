@@ -1,6 +1,10 @@
 import create from "zustand";
 
-export type ModalType = "buisnessIdeaModal" | "deleteBuisnessIdea";
+export type ModalType =
+  | "buisnessIdeaModal"
+  | "deleteBuisnessIdea"
+  | "createDemoReportModal"
+  | "alertDemoUser";
 
 interface ModalData {
   report?: any;

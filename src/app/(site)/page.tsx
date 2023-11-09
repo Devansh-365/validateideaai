@@ -27,7 +27,7 @@ export default function Home() {
               variant: "mentorship",
               className: "rounded-full mx-auto",
             })}
-            href="/login"
+            href="/dashboard"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -49,7 +49,7 @@ export default function Home() {
               className:
                 "rounded-full px-3 mx-auto bg-transparent border-2 border-[#38383e] border-solid text-white",
             })}
-            href="/login"
+            href="/demo"
           >
             <Image
               src="/demo.png"

@@ -3,6 +3,8 @@
 import CreateBuisnessIdeaModal from "./modals/buisness-idea-modal";
 import { useEffect, useState } from "react";
 import { DeleteBuisnessIdeaModal } from "./modals/delete-idea-modal";
+import CreateDemoReport from "./modals/create-demo-report";
+import { AlertDemoUserModal } from "./modals/alert-demo-user";
 
 export const ModalProvider = () => {
   const [isMounted, setIsMounted] = useState(false);
@@ -19,6 +21,8 @@ export const ModalProvider = () => {
     <>
       <DeleteBuisnessIdeaModal />
       <CreateBuisnessIdeaModal />
+      <CreateDemoReport />
+      <AlertDemoUserModal />
     </>
   );
 };
