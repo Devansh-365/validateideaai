@@ -7,18 +7,18 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import faqData from "@/config/faq.data";
+import pricingData from "@/config/pricing.data";
 
 export default function Home() {
   return (
     <>
       <section className="bg-[#26262B] h-auto md:min-h-[80vh] flex flex-col items-center mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-32 lg:pt-28 lg:pb-40">
         <h1 className="text-3xl font-semibold tracking-tight text-white text-center sm:text-7xl max-w-4xl">
-          Smart Decision-Making with AI for Entrepreneurs
+          Validate your idea and turn your dream into reality
         </h1>
         <p className="mt-6 sm:text-lg leading-6 text-[#A5ABB6] sm:leading-8 text-center max-w-4xl">
-          Leverage the Advanced Capabilities of Artificial Intelligence to
-          Enhance Your Entrepreneurial Decision-Making Process and Achieve
-          Optimal Outcomes
+          {`Craft a solid plan, gather feedback, and make strategic moves – your entrepreneurial journey starts with a vision and thrives on validation.`}
         </p>
         <div className="flex gap-4 mt-8 mb-12">
           <Link
@@ -148,321 +148,70 @@ export default function Home() {
           free
         </h3>
         <div className="mt-6 flex flex-col md:flex-row gap-8">
-          <div className="max-w-[302px] shadow-2xl border border-solid shadow-gray-200 py-6 px-3 flex flex-col gap-4 rounded-xl">
-            <p className="rounded-md w-fit px-3 py-1 bg-[#298DFF]/20 text-[#0A7CFF] text-sm">
-              Free
-            </p>
-            <div className="flex gap-2">
-              <span className="text-[#A5ABB6] text-lg">₹</span>
-              <span className="text-4xl text-[#2D3139]">0</span>
-            </div>
-            <Link
-              className={buttonVariants({
-                size: "lg",
-                variant: "mentorship",
-                className: "rounded-full w-full",
-              })}
-              href="/login"
+          {pricingData.map((item, index) => (
+            <div
+              key={index}
+              className="max-w-[302px] shadow-2xl border border-solid shadow-gray-200 py-6 px-3 flex flex-col gap-4 rounded-xl"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="19"
-                height="23"
-                viewBox="0 0 19 23"
-                fill="none"
+              <p className="rounded-md w-fit px-3 py-1 bg-[#298DFF]/20 text-[#0A7CFF] text-sm">
+                {item.title}
+              </p>
+              <div className="flex gap-2">
+                <span className="text-[#A5ABB6] text-lg">₹</span>
+                <span className="text-4xl text-[#2D3139]">{item.price}</span>
+              </div>
+              <Link
+                className={buttonVariants({
+                  size: "lg",
+                  variant: "mentorship",
+                  className: "rounded-full w-full",
+                })}
+                href={item.buttonLink}
               >
-                <path
-                  d="M0.25 13.0796C0.25 18.0796 4.27944 22.0796 9.25 22.0796C14.2206 22.0796 18.25 18.0796 18.25 13.0796C18.25 6.03194 12.7312 2.0503 10.3368 0.654477C10.0355 0.478817 9.8848 0.390987 9.7183 0.411007C9.5848 0.427047 9.4364 0.518297 9.3619 0.630117C9.2688 0.769707 9.2795 0.949077 9.3009 1.30783C9.4971 4.60034 10.0352 11.0796 6.67857 11.0796C4.52186 11.0796 4.17403 9.35998 4.11793 6.64203C4.10825 6.17323 4.10342 5.93883 3.97461 5.79948C3.87106 5.68746 3.6874 5.62227 3.53639 5.64394C3.34856 5.67091 3.21098 5.83333 2.93582 6.15819C1.80088 7.49809 0.25 9.90908 0.25 13.0796Z"
-                  fill="white"
-                />
-              </svg>
-              <span className="ml-2">Get Started</span>
-            </Link>
-            <ul className="gap-2 flex flex-col mt-4">
-              <li className="flex">
-                <div className="w-3 h-3 mr-2">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="25"
-                    viewBox="0 0 24 25"
-                    fill="none"
-                  >
-                    <path
-                      opacity="0.32"
-                      d="M12 1.33008C6.06294 1.33008 1.25 6.14302 1.25 12.0801C1.25 18.0172 6.06294 22.8301 12 22.8301C17.9371 22.8301 22.75 18.0172 22.75 12.0801C22.75 6.14302 17.9371 1.33008 12 1.33008Z"
-                      fill="#0A7CFF"
-                    />
-                    <path
-                      fillRule="evenodd"
-                      clipRule="evenodd"
-                      d="M17.0303 9.04975C17.3232 9.34264 17.3232 9.81752 17.0303 10.1104L11.5303 15.6104C11.3897 15.7511 11.1989 15.8301 11 15.8301C10.8011 15.8301 10.6103 15.7511 10.4697 15.6104L7.96967 13.1104C7.67678 12.8175 7.67678 12.3427 7.96967 12.0498C8.26256 11.7569 8.73744 11.7569 9.03033 12.0498L11 14.0194L15.9697 9.04975C16.2626 8.75686 16.7374 8.75686 17.0303 9.04975Z"
-                      fill="#0A7CFF"
-                    />
-                  </svg>
-                </div>
-                <span className="ml-2">Comprehensive business idea report</span>
-              </li>
-              <li className="flex">
-                <div className="w-3 h-3 mr-2">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="25"
-                    viewBox="0 0 24 25"
-                    fill="none"
-                  >
-                    <path
-                      opacity="0.32"
-                      d="M12 1.33008C6.06294 1.33008 1.25 6.14302 1.25 12.0801C1.25 18.0172 6.06294 22.8301 12 22.8301C17.9371 22.8301 22.75 18.0172 22.75 12.0801C22.75 6.14302 17.9371 1.33008 12 1.33008Z"
-                      fill="#0A7CFF"
-                    />
-                    <path
-                      fillRule="evenodd"
-                      clipRule="evenodd"
-                      d="M17.0303 9.04975C17.3232 9.34264 17.3232 9.81752 17.0303 10.1104L11.5303 15.6104C11.3897 15.7511 11.1989 15.8301 11 15.8301C10.8011 15.8301 10.6103 15.7511 10.4697 15.6104L7.96967 13.1104C7.67678 12.8175 7.67678 12.3427 7.96967 12.0498C8.26256 11.7569 8.73744 11.7569 9.03033 12.0498L11 14.0194L15.9697 9.04975C16.2626 8.75686 16.7374 8.75686 17.0303 9.04975Z"
-                      fill="#0A7CFF"
-                    />
-                  </svg>
-                </div>
-                <span className="ml-2">
-                  Business overview and viability assessment
-                </span>
-              </li>
-              <li className="flex">
-                <div className="w-3 h-3 mr-2">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="25"
-                    viewBox="0 0 24 25"
-                    fill="none"
-                  >
-                    <path
-                      opacity="0.32"
-                      d="M12 1.33008C6.06294 1.33008 1.25 6.14302 1.25 12.0801C1.25 18.0172 6.06294 22.8301 12 22.8301C17.9371 22.8301 22.75 18.0172 22.75 12.0801C22.75 6.14302 17.9371 1.33008 12 1.33008Z"
-                      fill="#0A7CFF"
-                    />
-                    <path
-                      fillRule="evenodd"
-                      clipRule="evenodd"
-                      d="M17.0303 9.04975C17.3232 9.34264 17.3232 9.81752 17.0303 10.1104L11.5303 15.6104C11.3897 15.7511 11.1989 15.8301 11 15.8301C10.8011 15.8301 10.6103 15.7511 10.4697 15.6104L7.96967 13.1104C7.67678 12.8175 7.67678 12.3427 7.96967 12.0498C8.26256 11.7569 8.73744 11.7569 9.03033 12.0498L11 14.0194L15.9697 9.04975C16.2626 8.75686 16.7374 8.75686 17.0303 9.04975Z"
-                      fill="#0A7CFF"
-                    />
-                  </svg>
-                </div>
-                <span className="ml-2">Launch and scaling guidance</span>
-              </li>
-              <li className="flex">
-                <div className="w-3 h-3 mr-2">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="25"
-                    viewBox="0 0 24 25"
-                    fill="none"
-                  >
-                    <path
-                      opacity="0.32"
-                      d="M12 1.33008C6.06294 1.33008 1.25 6.14302 1.25 12.0801C1.25 18.0172 6.06294 22.8301 12 22.8301C17.9371 22.8301 22.75 18.0172 22.75 12.0801C22.75 6.14302 17.9371 1.33008 12 1.33008Z"
-                      fill="#0A7CFF"
-                    />
-                    <path
-                      fillRule="evenodd"
-                      clipRule="evenodd"
-                      d="M17.0303 9.04975C17.3232 9.34264 17.3232 9.81752 17.0303 10.1104L11.5303 15.6104C11.3897 15.7511 11.1989 15.8301 11 15.8301C10.8011 15.8301 10.6103 15.7511 10.4697 15.6104L7.96967 13.1104C7.67678 12.8175 7.67678 12.3427 7.96967 12.0498C8.26256 11.7569 8.73744 11.7569 9.03033 12.0498L11 14.0194L15.9697 9.04975C16.2626 8.75686 16.7374 8.75686 17.0303 9.04975Z"
-                      fill="#0A7CFF"
-                    />
-                  </svg>
-                </div>
-                <span className="ml-2">Fundraising strategies</span>
-              </li>
-              <li className="flex">
-                <div className="w-3 h-3 mr-2">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="25"
-                    viewBox="0 0 24 25"
-                    fill="none"
-                  >
-                    <path
-                      opacity="0.32"
-                      d="M12 1.33008C6.06294 1.33008 1.25 6.14302 1.25 12.0801C1.25 18.0172 6.06294 22.8301 12 22.8301C17.9371 22.8301 22.75 18.0172 22.75 12.0801C22.75 6.14302 17.9371 1.33008 12 1.33008Z"
-                      fill="#0A7CFF"
-                    />
-                    <path
-                      fillRule="evenodd"
-                      clipRule="evenodd"
-                      d="M17.0303 9.04975C17.3232 9.34264 17.3232 9.81752 17.0303 10.1104L11.5303 15.6104C11.3897 15.7511 11.1989 15.8301 11 15.8301C10.8011 15.8301 10.6103 15.7511 10.4697 15.6104L7.96967 13.1104C7.67678 12.8175 7.67678 12.3427 7.96967 12.0498C8.26256 11.7569 8.73744 11.7569 9.03033 12.0498L11 14.0194L15.9697 9.04975C16.2626 8.75686 16.7374 8.75686 17.0303 9.04975Z"
-                      fill="#0A7CFF"
-                    />
-                  </svg>
-                </div>
-                <span className="ml-2">
-                  Operational cost management and partnership tips
-                </span>
-              </li>
-            </ul>
-          </div>
-          <div className="max-w-[302px] shadow-2xl border border-solid shadow-gray-200 py-6 px-3 flex flex-col gap-4 rounded-xl">
-            <p className="rounded-md w-fit px-3 py-1 bg-[#298DFF]/20 text-[#0A7CFF] text-sm">
-              Premium
-            </p>
-            <div className="flex gap-2">
-              <span className="text-[#A5ABB6] text-lg">₹</span>
-              <span className="text-4xl text-[#2D3139]">49</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="19"
+                  height="23"
+                  viewBox="0 0 19 23"
+                  fill="none"
+                >
+                  <path
+                    d="M0.25 13.0796C0.25 18.0796 4.27944 22.0796 9.25 22.0796C14.2206 22.0796 18.25 18.0796 18.25 13.0796C18.25 6.03194 12.7312 2.0503 10.3368 0.654477C10.0355 0.478817 9.8848 0.390987 9.7183 0.411007C9.5848 0.427047 9.4364 0.518297 9.3619 0.630117C9.2688 0.769707 9.2795 0.949077 9.3009 1.30783C9.4971 4.60034 10.0352 11.0796 6.67857 11.0796C4.52186 11.0796 4.17403 9.35998 4.11793 6.64203C4.10825 6.17323 4.10342 5.93883 3.97461 5.79948C3.87106 5.68746 3.6874 5.62227 3.53639 5.64394C3.34856 5.67091 3.21098 5.83333 2.93582 6.15819C1.80088 7.49809 0.25 9.90908 0.25 13.0796Z"
+                    fill="white"
+                  />
+                </svg>
+                <span className="ml-2">{item.buttonText}</span>
+              </Link>
+              <ul className="gap-2 flex flex-col mt-4">
+                {item.features.map((feature, index) => (
+                  <li key={index} className="flex">
+                    <div className="w-3 h-3 mr-2">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="25"
+                        viewBox="0 0 24 25"
+                        fill="none"
+                      >
+                        <path
+                          opacity="0.32"
+                          d="M12 1.33008C6.06294 1.33008 1.25 6.14302 1.25 12.0801C1.25 18.0172 6.06294 22.8301 12 22.8301C17.9371 22.8301 22.75 18.0172 22.75 12.0801C22.75 6.14302 17.9371 1.33008 12 1.33008Z"
+                          fill="#0A7CFF"
+                        />
+                        <path
+                          fillRule="evenodd"
+                          clipRule="evenodd"
+                          d="M17.0303 9.04975C17.3232 9.34264 17.3232 9.81752 17.0303 10.1104L11.5303 15.6104C11.3897 15.7511 11.1989 15.8301 11 15.8301C10.8011 15.8301 10.6103 15.7511 10.4697 15.6104L7.96967 13.1104C7.67678 12.8175 7.67678 12.3427 7.96967 12.0498C8.26256 11.7569 8.73744 11.7569 9.03033 12.0498L11 14.0194L15.9697 9.04975C16.2626 8.75686 16.7374 8.75686 17.0303 9.04975Z"
+                          fill="#0A7CFF"
+                        />
+                      </svg>
+                    </div>
+                    <span className="ml-2">{feature}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
-            <Link
-              className={buttonVariants({
-                size: "lg",
-                variant: "mentorship",
-                className: "rounded-full w-full",
-              })}
-              href="https://mydukaan.io/tech2705"
-              target="_blank"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="19"
-                height="23"
-                viewBox="0 0 19 23"
-                fill="none"
-              >
-                <path
-                  d="M0.25 13.0796C0.25 18.0796 4.27944 22.0796 9.25 22.0796C14.2206 22.0796 18.25 18.0796 18.25 13.0796C18.25 6.03194 12.7312 2.0503 10.3368 0.654477C10.0355 0.478817 9.8848 0.390987 9.7183 0.411007C9.5848 0.427047 9.4364 0.518297 9.3619 0.630117C9.2688 0.769707 9.2795 0.949077 9.3009 1.30783C9.4971 4.60034 10.0352 11.0796 6.67857 11.0796C4.52186 11.0796 4.17403 9.35998 4.11793 6.64203C4.10825 6.17323 4.10342 5.93883 3.97461 5.79948C3.87106 5.68746 3.6874 5.62227 3.53639 5.64394C3.34856 5.67091 3.21098 5.83333 2.93582 6.15819C1.80088 7.49809 0.25 9.90908 0.25 13.0796Z"
-                  fill="white"
-                />
-              </svg>
-              <span className="ml-2">Buy now</span>
-            </Link>
-            <ul className="gap-2 flex flex-col mt-4">
-              <li className="flex">
-                <div className="w-3 h-3 mr-2">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="25"
-                    viewBox="0 0 24 25"
-                    fill="none"
-                  >
-                    <path
-                      opacity="0.32"
-                      d="M12 1.33008C6.06294 1.33008 1.25 6.14302 1.25 12.0801C1.25 18.0172 6.06294 22.8301 12 22.8301C17.9371 22.8301 22.75 18.0172 22.75 12.0801C22.75 6.14302 17.9371 1.33008 12 1.33008Z"
-                      fill="#0A7CFF"
-                    />
-                    <path
-                      fillRule="evenodd"
-                      clipRule="evenodd"
-                      d="M17.0303 9.04975C17.3232 9.34264 17.3232 9.81752 17.0303 10.1104L11.5303 15.6104C11.3897 15.7511 11.1989 15.8301 11 15.8301C10.8011 15.8301 10.6103 15.7511 10.4697 15.6104L7.96967 13.1104C7.67678 12.8175 7.67678 12.3427 7.96967 12.0498C8.26256 11.7569 8.73744 11.7569 9.03033 12.0498L11 14.0194L15.9697 9.04975C16.2626 8.75686 16.7374 8.75686 17.0303 9.04975Z"
-                      fill="#0A7CFF"
-                    />
-                  </svg>
-                </div>
-                <span className="ml-2">Comprehensive business idea report</span>
-              </li>
-              <li className="flex">
-                <div className="w-3 h-3 mr-2">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="25"
-                    viewBox="0 0 24 25"
-                    fill="none"
-                  >
-                    <path
-                      opacity="0.32"
-                      d="M12 1.33008C6.06294 1.33008 1.25 6.14302 1.25 12.0801C1.25 18.0172 6.06294 22.8301 12 22.8301C17.9371 22.8301 22.75 18.0172 22.75 12.0801C22.75 6.14302 17.9371 1.33008 12 1.33008Z"
-                      fill="#0A7CFF"
-                    />
-                    <path
-                      fillRule="evenodd"
-                      clipRule="evenodd"
-                      d="M17.0303 9.04975C17.3232 9.34264 17.3232 9.81752 17.0303 10.1104L11.5303 15.6104C11.3897 15.7511 11.1989 15.8301 11 15.8301C10.8011 15.8301 10.6103 15.7511 10.4697 15.6104L7.96967 13.1104C7.67678 12.8175 7.67678 12.3427 7.96967 12.0498C8.26256 11.7569 8.73744 11.7569 9.03033 12.0498L11 14.0194L15.9697 9.04975C16.2626 8.75686 16.7374 8.75686 17.0303 9.04975Z"
-                      fill="#0A7CFF"
-                    />
-                  </svg>
-                </div>
-                <span className="ml-2">
-                  Business overview and viability assessment
-                </span>
-              </li>
-              <li className="flex">
-                <div className="w-3 h-3 mr-2">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="25"
-                    viewBox="0 0 24 25"
-                    fill="none"
-                  >
-                    <path
-                      opacity="0.32"
-                      d="M12 1.33008C6.06294 1.33008 1.25 6.14302 1.25 12.0801C1.25 18.0172 6.06294 22.8301 12 22.8301C17.9371 22.8301 22.75 18.0172 22.75 12.0801C22.75 6.14302 17.9371 1.33008 12 1.33008Z"
-                      fill="#0A7CFF"
-                    />
-                    <path
-                      fillRule="evenodd"
-                      clipRule="evenodd"
-                      d="M17.0303 9.04975C17.3232 9.34264 17.3232 9.81752 17.0303 10.1104L11.5303 15.6104C11.3897 15.7511 11.1989 15.8301 11 15.8301C10.8011 15.8301 10.6103 15.7511 10.4697 15.6104L7.96967 13.1104C7.67678 12.8175 7.67678 12.3427 7.96967 12.0498C8.26256 11.7569 8.73744 11.7569 9.03033 12.0498L11 14.0194L15.9697 9.04975C16.2626 8.75686 16.7374 8.75686 17.0303 9.04975Z"
-                      fill="#0A7CFF"
-                    />
-                  </svg>
-                </div>
-                <span className="ml-2">Launch and scaling guidance</span>
-              </li>
-              <li className="flex">
-                <div className="w-3 h-3 mr-2">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="25"
-                    viewBox="0 0 24 25"
-                    fill="none"
-                  >
-                    <path
-                      opacity="0.32"
-                      d="M12 1.33008C6.06294 1.33008 1.25 6.14302 1.25 12.0801C1.25 18.0172 6.06294 22.8301 12 22.8301C17.9371 22.8301 22.75 18.0172 22.75 12.0801C22.75 6.14302 17.9371 1.33008 12 1.33008Z"
-                      fill="#0A7CFF"
-                    />
-                    <path
-                      fillRule="evenodd"
-                      clipRule="evenodd"
-                      d="M17.0303 9.04975C17.3232 9.34264 17.3232 9.81752 17.0303 10.1104L11.5303 15.6104C11.3897 15.7511 11.1989 15.8301 11 15.8301C10.8011 15.8301 10.6103 15.7511 10.4697 15.6104L7.96967 13.1104C7.67678 12.8175 7.67678 12.3427 7.96967 12.0498C8.26256 11.7569 8.73744 11.7569 9.03033 12.0498L11 14.0194L15.9697 9.04975C16.2626 8.75686 16.7374 8.75686 17.0303 9.04975Z"
-                      fill="#0A7CFF"
-                    />
-                  </svg>
-                </div>
-                <span className="ml-2">Fundraising strategies</span>
-              </li>
-              <li className="flex">
-                <div className="w-3 h-3 mr-2">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="25"
-                    viewBox="0 0 24 25"
-                    fill="none"
-                  >
-                    <path
-                      opacity="0.32"
-                      d="M12 1.33008C6.06294 1.33008 1.25 6.14302 1.25 12.0801C1.25 18.0172 6.06294 22.8301 12 22.8301C17.9371 22.8301 22.75 18.0172 22.75 12.0801C22.75 6.14302 17.9371 1.33008 12 1.33008Z"
-                      fill="#0A7CFF"
-                    />
-                    <path
-                      fillRule="evenodd"
-                      clipRule="evenodd"
-                      d="M17.0303 9.04975C17.3232 9.34264 17.3232 9.81752 17.0303 10.1104L11.5303 15.6104C11.3897 15.7511 11.1989 15.8301 11 15.8301C10.8011 15.8301 10.6103 15.7511 10.4697 15.6104L7.96967 13.1104C7.67678 12.8175 7.67678 12.3427 7.96967 12.0498C8.26256 11.7569 8.73744 11.7569 9.03033 12.0498L11 14.0194L15.9697 9.04975C16.2626 8.75686 16.7374 8.75686 17.0303 9.04975Z"
-                      fill="#0A7CFF"
-                    />
-                  </svg>
-                </div>
-                <span className="ml-2">
-                  Operational cost management and partnership tips
-                </span>
-              </li>
-            </ul>
-          </div>
+          ))}
         </div>
       </section>
       <section className="relative flex flex-col items-center mx-auto px-4 sm:px-6 lg:px-8 pb-16 pt-16 lg:pb-20 max-w-2xl">
@@ -473,38 +222,16 @@ export default function Home() {
           Frequently asked questions
         </h3>
         <Accordion type="single" collapsible className="w-full space-y-3">
-          <AccordionItem value="item-1">
-            <AccordionTrigger className="text-start">
-              How do you ensure the privacy and security of our data?{" "}
-            </AccordionTrigger>
-            <AccordionContent className="text-start">
-              We take data privacy seriously. Your information is encrypted and
-              stored securely. We follow industry best practices to protect your
-              data from unauthorized access.
-            </AccordionContent>
-          </AccordionItem>
-          <AccordionItem value="item-2">
-            <AccordionTrigger className="text-start">
-              How can I apply second-order thinking to my business processes?{" "}
-            </AccordionTrigger>
-            <AccordionContent className="text-start">
-              Our platform provides tools and guidance for incorporating
-              second-order thinking into your business strategy. We help you
-              analyze and plan for the long-term impacts of your decisions.
-            </AccordionContent>
-          </AccordionItem>
-          <AccordionItem value="item-3">
-            <AccordionTrigger className="text-start">
-              What is the process for validating a business idea with your
-              platform?
-            </AccordionTrigger>
-            <AccordionContent className="text-start">
-              To validate a business idea, you can input your concept into our
-              system. Our AI will analyze it based on various factors, providing
-              feedback on its feasibility, potential market reception, and
-              possible challenges.
-            </AccordionContent>
-          </AccordionItem>
+          {faqData.map((item, index) => (
+            <AccordionItem value={`item-${index}`} key={index}>
+              <AccordionTrigger className="text-start">
+                {item.trigger}
+              </AccordionTrigger>
+              <AccordionContent className="text-start">
+                {item.content}
+              </AccordionContent>
+            </AccordionItem>
+          ))}
         </Accordion>
       </section>
     </>

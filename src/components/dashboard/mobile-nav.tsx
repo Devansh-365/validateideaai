@@ -52,7 +52,21 @@ export default function MobileNav() {
           </SheetHeader>
           <div className="grid py-4 px-4">
             <Button
-              onClick={() => onOpen("buisnessIdeaModal")}
+              onClick={() => {
+                if (
+                  (user.role === "member" && sideNavData.length < 4) ||
+                  (user.role !== "member" &&
+                    user.role !== "admin" &&
+                    sideNavData.length < 1) ||
+                  user.role === "admin"
+                ) {
+                  onOpen("buisnessIdeaModal");
+                } else if (user.role === "member" && sideNavData.length >= 4) {
+                  onOpen("contactUs");
+                } else {
+                  onOpen("createMoreReport");
+                }
+              }}
               className="w-full rounded-lg py-5 bg-blue-600 hover:bg-blue-600/80"
             >
               <Icons.add className="w-4 h-4 mr-2" />

@@ -122,14 +122,15 @@ export default function SideNav() {
         <Button
           onClick={() => {
             if (
-              (sideNavData.length > 1 &&
-                user.role !== "member" &&
-                user.role !== "admin") ||
-              user.role === "member" ||
-              user.role === "admin" ||
-              sideNavData.length < 1
+              (user.role === "member" && sideNavData.length < 4) ||
+              (user.role !== "member" &&
+                user.role !== "admin" &&
+                sideNavData.length < 1) ||
+              user.role === "admin"
             ) {
               onOpen("buisnessIdeaModal");
+            } else if (user.role === "member" && sideNavData.length >= 4) {
+              onOpen("contactUs");
             } else {
               onOpen("createMoreReport");
             }

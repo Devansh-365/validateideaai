@@ -63,7 +63,7 @@ export default async function page({ params }: { params: { ideaId: string } }) {
               <h2 className="font-bold text-4xl capitalize">
                 {report.businessIdeaName}
               </h2>
-              <DeleteReportButton report={report} />
+              {/* <DeleteReportButton report={report} /> */}
             </div>
             {report ? (
               <ReactMarkdown
