@@ -62,38 +62,38 @@ export default function MobileNav() {
               Your Reports
             </p>
             <div className="mt-3 flex flex-col items-center gap-2">
-          {!isSideNavLoading && !isUserLoading ? (
-            <>
-              {sideNavData &&
-                sideNavData.map((item: any) => (
-                  <>
-                    {item.businessIdeaName && (
-                      <Link
-                        key={item._id}
-                        href={`/dashboard/idea/${item._id}`}
-                        className={buttonVariants({
-                          variant: "sidenav",
-                          className: `w-full rounded-lg flex items-start justify-start text-start text-black hover:text-white capitalize hover:bg-accent ${
-                            pathname === `/dashboard/idea/${item._id}`
-                              ? "bg-accent"
-                              : ""
-                          }`,
-                        })}
-                      >
-                        <LinkIcon className="mr-2 text-white w-4 h-4" />
-                        <span className="mr-auto">
-                          {item.businessIdeaName && item.businessIdeaName}
-                        </span>
-                        {/* <Icons.trash className="bg-red-600 text-white w-6 h-6 p-1 rounded-full ml-auto" /> */}
-                      </Link>
-                    )}
-                  </>
-                ))}
-            </>
-          ) : (
-            <div>Loading</div>
-          )}
-        </div>
+              {!isSideNavLoading && !isUserLoading ? (
+                <>
+                  {sideNavData &&
+                    sideNavData.map((item: any) => (
+                      <>
+                        {item.businessIdeaName && (
+                          <Link
+                            key={item._id}
+                            href={`/dashboard/idea/${item._id}`}
+                            className={buttonVariants({
+                              variant: "sidenav",
+                              className: `w-full rounded-lg flex items-start justify-start text-start text-black hover:text-white capitalize hover:bg-accent ${
+                                pathname === `/dashboard/idea/${item._id}`
+                                  ? "bg-accent"
+                                  : ""
+                              }`,
+                            })}
+                          >
+                            <LinkIcon className="mr-2 text-white w-4 h-4" />
+                            <span className="mr-auto">
+                              {item.businessIdeaName && item.businessIdeaName}
+                            </span>
+                            {/* <Icons.trash className="bg-red-600 text-white w-6 h-6 p-1 rounded-full ml-auto" /> */}
+                          </Link>
+                        )}
+                      </>
+                    ))}
+                </>
+              ) : (
+                <div>Loading</div>
+              )}
+            </div>
           </div>
           {/* <SheetFooter>
             <SheetClose asChild>
