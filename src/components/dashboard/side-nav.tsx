@@ -120,7 +120,20 @@ export default function SideNav() {
       </Link>
       <div className="px-4">
         <Button
-          onClick={() => onOpen("buisnessIdeaModal")}
+          onClick={() => {
+            if (
+              (sideNavData.length > 1 &&
+                user.role !== "member" &&
+                user.role !== "admin") ||
+              user.role === "member" ||
+              user.role === "admin" ||
+              sideNavData.length < 1
+            ) {
+              onOpen("buisnessIdeaModal");
+            } else {
+              onOpen("createMoreReport");
+            }
+          }}
           className="w-full rounded-lg py-5 bg-blue-600 hover:bg-blue-600/80"
         >
           <Icons.add className="w-4 h-4 mr-2" />
@@ -134,7 +147,7 @@ export default function SideNav() {
             <>
               {sideNavData &&
                 sideNavData.map((item: any) => (
-                  <>
+                  <div key={item._id} className="w-full">
                     {item.businessIdeaName && (
                       <Link
                         key={item._id}
@@ -155,7 +168,7 @@ export default function SideNav() {
                         {/* <Icons.trash className="bg-red-600 text-white w-6 h-6 p-1 rounded-full ml-auto" /> */}
                       </Link>
                     )}
-                  </>
+                  </div>
                 ))}
             </>
           ) : (

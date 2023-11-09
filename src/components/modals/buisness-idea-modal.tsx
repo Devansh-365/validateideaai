@@ -78,6 +78,7 @@ export default function CreateBuisnessIdeaModal() {
       onClose();
       toast.success("Buisness report created!");
       router.push(`/dashboard`);
+      router.refresh();
     } catch (error) {
       console.log(error);
       toast.error("Your buisness report request failed. Please try again.");

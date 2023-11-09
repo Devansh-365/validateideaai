@@ -4,7 +4,8 @@ export type ModalType =
   | "buisnessIdeaModal"
   | "deleteBuisnessIdea"
   | "createDemoReportModal"
-  | "alertDemoUser";
+  | "alertDemoUser"
+  | "createMoreReport";
 
 interface ModalData {
   report?: any;
