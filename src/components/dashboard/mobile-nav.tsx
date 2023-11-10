@@ -47,7 +47,7 @@ export default function MobileNav() {
                 alt="logo"
                 className="mr-2"
               />
-              <span className="text-black font-medium">PitchPerfectAI</span>
+              <span className="text-black font-medium">ValidateIdeaAI</span>
             </Link>
           </SheetHeader>
           <div className="grid py-4 px-4">

@@ -31,10 +31,10 @@ export default function LoginPage() {
           className="mr-4"
         />{" "}
         <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-50">
-          Login to MentorshipAI
+          Login to ValidateIdeaAI
         </h3>
         <p className="text-sm text-gray-500">
-          Smart Decision-Making with AI for Entrepreneurs
+          Validate your idea and turn your dream into reality
         </p>
       </div>
       <div className="flex flex-col space-y-3 px-4 py-6 sm:px-16">

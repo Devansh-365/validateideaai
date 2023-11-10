@@ -8,8 +8,8 @@ import QueryProvider from "@/components/query-provider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "PitchPerfectAI",
-  description: "Smart Decision-Making with AI for Entrepreneurs",
+  title: "ValidateIdeaAI",
+  description: "Validate your idea and turn your dream into reality",
 };
 
 export default function RootLayout({

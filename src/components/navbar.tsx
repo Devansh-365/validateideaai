@@ -46,7 +46,7 @@ export default async function Navbar({ children }: MainNavProps) {
             alt="logo"
             className="mr-2"
           />
-          <span>MentorshipAI</span>
+          <span>ValidateIdeaAI</span>
         </Link>
         <div className="flex h-full items-center">
           <Link

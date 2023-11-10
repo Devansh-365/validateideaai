@@ -116,7 +116,7 @@ export default function SideNav() {
           alt="logo"
           className="mr-2"
         />
-        <span className="text-white font-medium">PitchPerfectAI</span>
+        <span className="text-white font-medium">ValidateIdeaAI</span>
       </Link>
       <div className="px-4">
         <Button
