@@ -32,11 +32,11 @@ const pricingData = [
       "Revenue and market potential",
       "How to launch and scale",
       "Explore  possible partnerships",
-      "customer retention",
-      "about competitors",
-      "customer segmentation",
-      "guerilla marketing ideas",
-      "elevator pitch"
+      "Customer retention",
+      "About competitors",
+      "Customer segmentation",
+      "Guerilla marketing ideas",
+      "Elevator pitch"
 
     ],
   },
