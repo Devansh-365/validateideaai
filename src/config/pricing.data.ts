@@ -5,7 +5,7 @@ const pricingData = [
     buttonText: "Get Started",
     buttonLink: "/login",
     features: [
-      "1 complete report",
+      "1 complete report only when you register yourself",
       "Business overview",
       "Business validation",
       "Market research",
@@ -31,6 +31,13 @@ const pricingData = [
       "Monetization strategies",
       "Revenue and market potential",
       "How to launch and scale",
+      "Explore  possible partnerships",
+      "customer retention",
+      "about competitors",
+      "customer segmentation",
+      "guerilla marketing ideas",
+      "elevator pitch"
+
     ],
   },
 ];
