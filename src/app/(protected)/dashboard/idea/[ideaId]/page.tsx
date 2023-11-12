@@ -103,7 +103,6 @@ export default async function page({ params }: { params: { ideaId: string } }) {
                 <h3 className="mt-4 text-xl font-medium">No report found</h3>
               </div>
             )}
-            {/* <ChatWrapper /> */}
           </section>
         </div>
       </main>

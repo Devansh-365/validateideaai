@@ -1,5 +1,4 @@
 import React from "react";
-import ChatWrapper from "@/components/chat/chat-wrapper";
 import SideNav from "@/components/dashboard/side-nav";
 import { CircleOff } from "lucide-react";
 import axios from "axios";
@@ -66,7 +65,6 @@ export default async function DashboardPage() {
               <CircleOff className="w-8 h-8" />
               <h3 className="mt-4 text-xl font-medium">No report found</h3>
             </div>
-            {/* <ChatWrapper /> */}
           </section>
         </div>
       </main>
