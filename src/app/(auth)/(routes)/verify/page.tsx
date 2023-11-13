@@ -20,7 +20,7 @@ export default function VerifyPage() {
     const verifyEmail = async () => {
       try {
         const response = await axios.post(
-          "http://localhost:8000/v1/fine_tuning/jobs/verify",
+          "https://backend-mentorship.onrender.com/v1/fine_tuning/jobs/verify",
           {
             id: userId,
           }
